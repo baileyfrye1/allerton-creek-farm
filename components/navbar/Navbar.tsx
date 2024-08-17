@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link
               key={link.id}
               href={link.href}
-              className={`font-sourceCodePro font-light pb-0.5 ${pathname === link.href && 'border-b border-solid border-black'}`}
+              className={`font-sourceCodePro font-light pb-0.5 ${pathname === link.href && 'border-b border-black'}`}
             >
               {link.label}
             </Link>
