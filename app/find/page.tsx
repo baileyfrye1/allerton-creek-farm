@@ -10,7 +10,7 @@ const FindUsPage = () => {
           <h1 className='font-abel text-white text-[clamp(2rem,3vw,2.5rem)] mb-2'>
             Find Us
           </h1>
-          <p className='text-white font-sourceCodePro font-light w-2/3 mx-auto mb-8'>
+          <p className='text-white font-sourceCodePro font-light lg:w-2/3 mx-auto mb-8'>
             Visit us at one of our Farmers Market tables for day-of sharpening
             services and to view our products in person!
           </p>

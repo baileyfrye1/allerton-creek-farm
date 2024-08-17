@@ -16,8 +16,8 @@ const SharpeningPage = () => {
               scissors. We also offer light restoration on knives.
             </p>
           </div>
-          <article className='mt-12 lg:flex'>
-            <div className='mb-12'>
+          <article className='mt-12 lg:flex gap-8'>
+            <div className='mb-12 basis-2/3'>
               <h4 className='font-sourceCodePro font-semibold mb-2'>
                 How Does It Work?
               </h4>
@@ -36,7 +36,7 @@ const SharpeningPage = () => {
             </div>
             <form>
               <div className='flex gap-4 mb-4'>
-                <div>
+                <div className='basis-1/2'>
                   <label
                     htmlFor='first'
                     className='block font-sourceCodePro mb-1'
@@ -47,10 +47,10 @@ const SharpeningPage = () => {
                     type='text'
                     id='first'
                     name='first'
-                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem]'
+                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem] w-full'
                   />
                 </div>
-                <div>
+                <div className='basis-1/2'>
                   <label
                     htmlFor='last'
                     className='block font-sourceCodePro mb-1'
@@ -61,7 +61,7 @@ const SharpeningPage = () => {
                     type='text'
                     id='last'
                     name='last'
-                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem]'
+                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem] w-full'
                   />
                 </div>
               </div>

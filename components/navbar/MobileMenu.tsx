@@ -21,7 +21,7 @@ const MobileMenu = ({ isOpen, toggleBodyOverflow }: PropTypes) => {
             <Link
               key={link.id}
               href={link.href}
-              className={`font-sourceCodePro text-[clamp(2rem,3vw,2.5rem)] font-light w-max ${pathname === link.href && 'border-b border-black'}`}
+              className={`font-sourceCodePro text-[clamp(2rem,3vw,2.5rem)] font-light w-max [&:not(:last-child)]:mb-2 ${pathname === link.href && 'border-b border-black'}`}
               onClick={toggleBodyOverflow}
             >
               {link.label}
