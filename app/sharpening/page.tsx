@@ -1,8 +1,14 @@
+'use client';
 import Container from '@/components/global/Container';
 import knives from '@/utils/knives';
 import KnifeType from '@/components/KnifeType';
+import FormInput from '@/components/form/FormInput';
+import { sendEmailAction } from '@/utils/actions';
+import { useRef } from 'react';
+import Form from '@/components/form/Form';
 
 const SharpeningPage = () => {
+  const ref = useRef<HTMLFormElement>(null);
   return (
     <>
       <section className='py-12'>
@@ -34,81 +40,7 @@ const SharpeningPage = () => {
                 sharpening
               </a>
             </div>
-            <form>
-              <div className='flex gap-4 mb-4'>
-                <div className='basis-1/2'>
-                  <label
-                    htmlFor='first'
-                    className='block font-sourceCodePro mb-1'
-                  >
-                    First Name
-                  </label>
-                  <input
-                    type='text'
-                    id='first'
-                    name='first'
-                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem] w-full'
-                  />
-                </div>
-                <div className='basis-1/2'>
-                  <label
-                    htmlFor='last'
-                    className='block font-sourceCodePro mb-1'
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    type='text'
-                    id='last'
-                    name='last'
-                    className='bg-[#FAFAFA] border-[#A9A9A9] border p-[0.625rem] w-full'
-                  />
-                </div>
-              </div>
-              <div className='mb-4'>
-                <label
-                  htmlFor='phone'
-                  className='block font-sourceCodePro mb-1'
-                >
-                  Phone
-                </label>
-                <input
-                  type='tel'
-                  name='phone'
-                  id='phone'
-                  className='bg-[#FAFAFA] border-[#A9A9A9] border w-full p-[.625rem]'
-                />
-              </div>
-              <div className='mb-4'>
-                <label
-                  htmlFor='email'
-                  className='block font-sourceCodePro mb-1'
-                >
-                  Email
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  className='bg-[#FAFAFA] border-[#A9A9A9] border w-full p-[.625rem]'
-                />
-              </div>
-              <div className='mb-4'>
-                <label htmlFor='desc' className='block font-sourceCodePro mb-1'>
-                  Please use the space below to list all of the items you would
-                  like sharpened.
-                </label>
-                <textarea
-                  name='desc'
-                  id='desc'
-                  placeholder='Ex: One 7in ceramic knife and one 5in smooth edge kitchen knife'
-                  className='bg-[#FAFAFA] border-[#A9A9A9] border w-full p-[.625rem] h-[6.25rem]'
-                ></textarea>
-              </div>
-              <button className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white'>
-                Submit
-              </button>
-            </form>
+            <Form />
           </article>
         </Container>
       </section>

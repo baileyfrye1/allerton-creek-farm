@@ -3,7 +3,8 @@ import { Source_Code_Pro, Abel } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
-import Container from '@/components/global/Container';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const abel = Abel({
   weight: '400',
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={`${abel.variable} ${sourceCodePro.variable}`}>
         <Navbar />
         <main>{children}</main>
+        <ToastContainer />
         <Footer />
       </body>
     </html>
