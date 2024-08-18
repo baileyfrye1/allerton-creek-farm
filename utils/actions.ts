@@ -4,7 +4,7 @@ import EmailTemplate from '@/emails/emailTemplate';
 import { Resend } from 'resend';
 import { emailSchema, validateWithZodSchema } from './schemas';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
 export const sendEmailAction = async (formData: FormData) => {
   const rawData = Object.fromEntries(formData);
