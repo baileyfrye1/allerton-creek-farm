@@ -1,14 +1,19 @@
 import { z, ZodSchema } from 'zod';
 
 export const emailSchema = z.object({
-  first: z
-    .string()
-    .min(1, { message: 'First name must be at least 1 character' }),
-  last: z
-    .string()
-    .min(1, { message: 'Last name must be at least 1 character' }),
+  first: z.string().min(1, { message: 'First name can not be empty' }),
+  last: z.string().min(1, { message: 'Last name can not be empty' }),
   phone: z.string(),
-  email: z.string().email(),
+  email: z
+    .string()
+    .email()
+    .refine(
+      (email) => {
+        let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        return email.match(pattern);
+      },
+      { message: 'Please enter a valid email address' },
+    ),
   desc: z.string(),
 });
 

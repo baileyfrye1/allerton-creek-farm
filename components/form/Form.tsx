@@ -10,13 +10,13 @@ const Form = () => {
   const ref = useRef<HTMLFormElement>(null);
 
   async function clientAction(formData: FormData) {
-    ref.current?.reset();
     const result = await sendEmailAction(formData);
-
     if (result?.error) {
       toast.error(result.error);
+      return;
     } else {
       toast.success('Thank you for submitting! We will contact you shortly.');
+      ref.current?.reset();
     }
   }
 
