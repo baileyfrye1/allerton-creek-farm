@@ -21,7 +21,7 @@ const Footer = () => {
             allertoncreekfarm@gmail.com
           </a>
           <a href='tel:+19087134939' className='underline font-sourceCodePro'>
-            (908) 713-4939
+            908.713.4939
           </a>
         </div>
       </Container>
