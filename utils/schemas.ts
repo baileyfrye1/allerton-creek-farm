@@ -1,31 +1,26 @@
 import { z, ZodSchema } from 'zod';
 
+const phoneRegex = new RegExp(
+  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
+);
+
 export const emailSchema = z.object({
-  first: z.string().min(1, { message: 'First name can not be empty' }),
-  last: z.string().min(1, { message: 'Last name can not be empty' }),
-  phone: z.string(),
-  email: z
-    .string()
-    .email()
-    .refine(
-      (email) => {
-        let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-        return email.match(pattern);
-      },
-      { message: 'Please enter a valid email address' },
-    ),
-  desc: z.string().min(10, { message: 'Please enter a message' }),
+  first: z.string().trim().min(1, { message: 'First name is required' }),
+  last: z.string().trim().min(1, { message: 'Last name is required' }),
+  phone: z.string().regex(phoneRegex, 'Invalid Number'),
+  email: z.string().trim().email(),
+  desc: z.string().trim().min(10, { message: 'Please enter a message' }),
 });
 
-export function validateWithZodSchema<T>(
-  schema: ZodSchema<T>,
-  data: unknown,
-): { data: T; error?: undefined } | { error: Error; data?: undefined } {
-  const result = schema.safeParse(data);
-  if (!result.success) {
-    const errors = result.error.errors.map((error) => error.message);
-    return { error: new Error(errors.join('. ')) };
-  } else {
-    return { data: result.data };
-  }
-}
+export type FormFields = z.infer<typeof emailSchema>;
+
+// NOT NEEDED RIGHT NOW, MAY INTEGRATE LATER WHEN SITE HAS PRODUCTS
+// export function validateWithZodSchema<T>(schema: ZodSchema<T>, data: unknown) {
+//   const result = schema.safeParse(data);
+//   if (!result.success) {
+//     const errors = result.error.errors.map((error) => error.message);
+//     return { message: new Error(errors.join('. ')), fields: result.data };
+//   } else {
+//     return { data: result.data };
+//   }
+// }

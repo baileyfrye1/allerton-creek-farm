@@ -7,7 +7,7 @@ const FindUsPage = () => {
     <section className='bg-primary-400 py-12'>
       <Container>
         <div className='text-center border-b border-white pb-12'>
-          <h1 className='font-abel text-white text-[clamp(2rem,3vw,2.5rem)] mb-2'>
+          <h1 className='font-abel text-white text-[clamp(2rem,3vw,3rem)] mb-2'>
             Find Us
           </h1>
           <p className='text-white font-sourceCodePro font-light lg:w-2/3 mx-auto mb-8'>

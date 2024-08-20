@@ -1,19 +1,36 @@
 'use server';
 import EmailTemplate from '@/emails/emailTemplate';
 import { Resend } from 'resend';
-import { emailSchema, validateWithZodSchema } from './schemas';
+import { emailSchema } from './schemas';
 
 const resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
-export const sendEmailAction = async (formData: FormData) => {
+export type FormState = {
+  message: string;
+  fields?: Record<string, string>;
+  issues?: string[];
+};
+
+export const sendEmailAction = async (
+  prevState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
   const rawData = Object.fromEntries(formData);
-  const validatedFields = validateWithZodSchema(emailSchema, rawData);
+  const validatedFields = emailSchema.safeParse(rawData);
+
+  if (!validatedFields.success) {
+    const fields: Record<string, string> = {};
+    for (const key of Object.keys(rawData)) {
+      fields[key] = rawData[key].toString();
+    }
+    return {
+      message: 'Invalid form data',
+      fields,
+      issues: validatedFields.error.issues.map((issue) => issue.message),
+    };
+  }
 
   try {
-    if (validatedFields.error) {
-      throw new Error(validatedFields.error.message);
-    }
-
     await resend.emails.send({
       from: 'Allerton Creek Farm Form Submission <onboarding@resend.dev>',
       to: ['baileyafrye@comcast.net'],
@@ -24,8 +41,12 @@ export const sendEmailAction = async (formData: FormData) => {
   } catch (error) {
     if (error instanceof Error) {
       return {
-        error: error.message,
+        message: error.message,
+        fields: validatedFields.data,
       };
     }
   }
+  return {
+    message: 'Thank you for submitting! We will contact you shortly.',
+  };
 };

@@ -2,7 +2,7 @@
 import Container from '@/components/global/Container';
 import knives from '@/utils/knives';
 import KnifeType from '@/components/KnifeType';
-import Form from '@/components/form/Form';
+import EmailForm from '@/components/form/EmailForm';
 
 const SharpeningPage = () => {
   return (
@@ -10,7 +10,7 @@ const SharpeningPage = () => {
       <section className='py-12'>
         <Container>
           <div className='border-b border-black w-full pb-12'>
-            <h1 className='font-abel text-center text-[clamp(2.25rem,3vw,3rem)] mb-2'>
+            <h1 className='font-abel text-center text-[clamp(2rem,3vw,3rem)] mb-2'>
               Sharpening Services
             </h1>
             <p className='font-sourceCodePro font-light md:w-2/3 lg:w-1/2 mx-auto'>
@@ -36,7 +36,7 @@ const SharpeningPage = () => {
                 sharpening
               </a>
             </div>
-            <Form />
+            <EmailForm />
           </article>
         </Container>
       </section>
