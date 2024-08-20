@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${abel.variable} ${sourceCodePro.variable}`}>
         <Navbar />
         <main>{children}</main>
-        <ToastContainer />
+        <ToastContainer position='top-right' />
         <Footer />
       </body>
     </html>

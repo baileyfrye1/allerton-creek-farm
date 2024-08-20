@@ -7,6 +7,7 @@ type FormInputProps = {
   label?: string;
   placeholder?: string;
   className?: string;
+  onChange?: (value: string) => void;
 };
 
 const FormInput = ({
@@ -16,6 +17,7 @@ const FormInput = ({
   placeholder,
   className,
   inputType,
+  onChange,
 }: FormInputProps) => {
   return (
     <div className={cn('mb-4', className)}>

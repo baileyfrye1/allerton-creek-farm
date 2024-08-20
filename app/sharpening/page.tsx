@@ -2,13 +2,9 @@
 import Container from '@/components/global/Container';
 import knives from '@/utils/knives';
 import KnifeType from '@/components/KnifeType';
-import FormInput from '@/components/form/FormInput';
-import { sendEmailAction } from '@/utils/actions';
-import { useRef } from 'react';
 import Form from '@/components/form/Form';
 
 const SharpeningPage = () => {
-  const ref = useRef<HTMLFormElement>(null);
   return (
     <>
       <section className='py-12'>

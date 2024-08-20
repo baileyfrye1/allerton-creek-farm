@@ -38,7 +38,7 @@ export const EmailTemplate = ({
   return (
     <Html>
       <Head />
-      <Preview>Netlify Welcome</Preview>
+      <Preview>Knife Sharpening Request</Preview>
       <Tailwind
         config={{
           theme: {
@@ -58,7 +58,7 @@ export const EmailTemplate = ({
       >
         <Body className='bg-offwhite text-base font-sans'>
           <Img
-            src={`${baseUrl}/images/cuttingboard-cta.JPG`}
+            src={`/images/cuttingboard-cta.JPG`}
             width='184'
             height='75'
             alt='Netlify'
@@ -81,13 +81,6 @@ export const EmailTemplate = ({
                 <Text className='text-base'>{desc}</Text>
               </Row>
             </Section>
-
-            <Section className='text-center'>
-              <Button className='bg-brand text-white rounded-lg py-3 px-[18px]'>
-                Go to your dashboard
-              </Button>
-            </Section>
-
             <Section className='mt-45'></Section>
           </Container>
         </Body>

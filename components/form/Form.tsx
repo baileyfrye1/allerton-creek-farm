@@ -1,18 +1,41 @@
+'use client';
+
 import { sendEmailAction } from '@/utils/actions';
 import FormInput from './FormInput';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Form = () => {
+  const [phoneInput, setPhoneInput] = useState<string>();
   const ref = useRef<HTMLFormElement>(null);
 
+  async function clientAction(formData: FormData) {
+    ref.current?.reset();
+    const result = await sendEmailAction(formData);
+
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success('Thank you for submitting! We will contact you shortly.');
+    }
+  }
+
+  const formatPhoneNumber = (value: string) => {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6,
+    )}-${phoneNumber.slice(6, 10)}`;
+  };
+
   return (
-    <form
-      ref={ref}
-      action={async (formData) => {
-        sendEmailAction(formData);
-        ref.current?.reset();
-      }}
-    >
+    <form ref={ref} action={clientAction}>
       <div className='flex gap-4 mb-4'>
         <FormInput
           className='basis-1/2 mb-0'
@@ -27,7 +50,12 @@ const Form = () => {
           type='text'
         />
       </div>
-      <FormInput name='phone' label='phone' type='tel' />
+      <FormInput
+        name='phone'
+        label='phone'
+        type='tel'
+        onChange={formatPhoneNumber}
+      />
       <FormInput name='email' label='email' type='email' />
       <FormInput
         name='desc'

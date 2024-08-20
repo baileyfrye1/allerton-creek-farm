@@ -15,10 +15,12 @@ export const emailSchema = z.object({
 export function validateWithZodSchema<T>(
   schema: ZodSchema<T>,
   data: unknown,
-): T {
+): { data: T; error?: undefined } | { error: Error; data?: undefined } {
   const result = schema.safeParse(data);
   if (!result.success) {
-    throw new Error('Something went wrong. Please try again later');
+    const errors = result.error.errors.map((error) => error.message);
+    return { error: new Error(errors.join('. ')) };
+  } else {
+    return { data: result.data };
   }
-  return result.data;
 }
