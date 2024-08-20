@@ -14,7 +14,7 @@ export const emailSchema = z.object({
       },
       { message: 'Please enter a valid email address' },
     ),
-  desc: z.string(),
+  desc: z.string().min(10, { message: 'Please enter a message' }),
 });
 
 export function validateWithZodSchema<T>(
