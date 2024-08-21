@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { formatPhoneNumber } from '@/utils/phoneFormat';
+import { TailSpin } from 'react-loader-spinner';
 
 const EmailForm = () => {
   const [phoneInput, setPhoneInput] = useState<string>();
@@ -164,11 +164,23 @@ const EmailForm = () => {
           />
         </div>
         <button
-          className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white font-sourceCodePro disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-black'
+          className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white font-sourceCodePro disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-black flex items-center justify-center'
           disabled={isLoading}
           type='submit'
         >
-          {isLoading ? 'Submitting...' : 'Submit'}
+          {isLoading ? (
+            <>
+              <TailSpin
+                wrapperClass='!inline-block pr-4'
+                height='24'
+                width='24'
+                color='#000'
+              />{' '}
+              Submitting
+            </>
+          ) : (
+            'Submit'
+          )}
         </button>
       </form>
     </Form>
