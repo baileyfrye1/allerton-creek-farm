@@ -2,6 +2,7 @@
 
 import { sendEmailAction } from '@/utils/actions';
 import { useRef, useState, useEffect } from 'react';
+import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { emailSchema, FormFields } from '@/utils/schemas';
@@ -18,9 +19,11 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
+import { Button } from '../ui/button';
 
 const EmailForm = () => {
   const [phoneInput, setPhoneInput] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [state, formAction] = useFormState(sendEmailAction, { message: '' });
 
   const defaultValues = {
@@ -48,12 +51,19 @@ const EmailForm = () => {
     }
   }, [state]);
 
+  const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
+    event?.preventDefault();
+    setIsLoading(true);
+    form.reset();
+    return formRef.current?.submit();
+  };
+
   return (
     <Form {...form}>
       <form
         ref={formRef}
         action={formAction}
-        onSubmit={form.handleSubmit(() => formRef.current?.submit())}
+        onSubmit={form.handleSubmit(submitForm)}
       >
         <div className='flex gap-4 mb-4'>
           <FormField
@@ -61,7 +71,10 @@ const EmailForm = () => {
             name='first'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>First Name</FormLabel>
+                <FormLabel>
+                  First Name
+                  <span className='text-destructive align-super'>*</span>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -74,7 +87,10 @@ const EmailForm = () => {
             name='last'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>Last Name</FormLabel>
+                <FormLabel>
+                  Last Name
+                  <span className='text-destructive align-super'>*</span>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -89,7 +105,10 @@ const EmailForm = () => {
             name='phone'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel>
+                  Phone Number
+                  <span className='text-destructive align-super'>*</span>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -104,7 +123,9 @@ const EmailForm = () => {
             name='email'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>
+                  Email<span className='text-destructive align-super'>*</span>
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -122,6 +143,7 @@ const EmailForm = () => {
                 <FormLabel>
                   Please use the space below to list all of the items you would
                   like sharpened
+                  <span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Textarea
@@ -134,8 +156,11 @@ const EmailForm = () => {
             )}
           />
         </div>
-        <button className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white'>
-          Submit
+        <button
+          className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white font-sourceCodePro disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-black'
+          disabled={isLoading}
+        >
+          {isLoading ? 'Submitting...' : 'Submit'}
         </button>
       </form>
     </Form>

@@ -7,7 +7,7 @@ const phoneRegex = new RegExp(
 export const emailSchema = z.object({
   first: z.string().trim().min(1, { message: 'First name is required' }),
   last: z.string().trim().min(1, { message: 'Last name is required' }),
-  phone: z.string().regex(phoneRegex, 'Invalid Number'),
+  phone: z.string().regex(phoneRegex, 'Invalid number'),
   email: z.string().trim().email(),
   desc: z.string().trim().min(10, { message: 'Please enter a message' }),
 });
