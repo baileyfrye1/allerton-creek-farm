@@ -20,6 +20,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { formatPhoneNumber } from '@/utils/phoneFormat';
 
 const EmailForm = () => {
   const [phoneInput, setPhoneInput] = useState<string>();
@@ -108,7 +109,15 @@ const EmailForm = () => {
                   <span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='' {...field} />
+                  <Input
+                    onInput={(e) =>
+                      formatPhoneNumber(e.currentTarget.value, setPhoneInput)
+                    }
+                    placeholder=''
+                    {...field}
+                    value={phoneInput}
+                    type='tel'
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
