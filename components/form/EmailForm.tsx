@@ -52,7 +52,6 @@ const EmailForm = () => {
   }, [state]);
 
   const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
-    event?.preventDefault();
     setIsLoading(true);
     return formRef.current?.requestSubmit();
   };
@@ -158,6 +157,7 @@ const EmailForm = () => {
         <button
           className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white font-sourceCodePro disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-black'
           disabled={isLoading}
+          type='submit'
         >
           {isLoading ? 'Submitting...' : 'Submit'}
         </button>
