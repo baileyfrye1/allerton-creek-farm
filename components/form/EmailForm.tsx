@@ -53,7 +53,7 @@ const EmailForm = () => {
 
   const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
     setIsLoading(true);
-    return formRef.current?.requestSubmit();
+    return formRef.current?.submit();
   };
 
   return (
