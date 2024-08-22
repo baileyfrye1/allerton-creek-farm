@@ -2,11 +2,9 @@
 
 import { sendEmailAction } from '@/utils/actions';
 import { useRef, useState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { emailSchema, FormFields } from '@/utils/schemas';
-import { useFormState } from 'react-dom';
 import { toast } from 'react-toastify';
 import {
   Form,
@@ -18,14 +16,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
 import { formatPhoneNumber } from '@/utils/phoneFormat';
-import { TailSpin } from 'react-loader-spinner';
+import { useFormState } from 'react-dom';
+import FormButton from './FormButton';
 
 const EmailForm = () => {
-  const [phoneInput, setPhoneInput] = useState<string>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [state, formAction] = useFormState(sendEmailAction, { message: '' });
+  const [phoneInput, setPhoneInput] = useState<string | undefined>('');
+  const emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$';
+
+  const [state, formAction] = useFormState(sendEmailAction, {
+    message: '',
+  });
 
   const defaultValues = {
     first: '',
@@ -52,17 +53,19 @@ const EmailForm = () => {
     }
   }, [state]);
 
-  const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
-    setIsLoading(true);
-    return formRef.current?.submit();
-  };
+  console.log(phoneInput);
+
+  // const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
+  //   setIsLoading(true);
+  //   return formRef.current?.submit();
+  // };
 
   return (
     <Form {...form}>
       <form
         ref={formRef}
         action={formAction}
-        onSubmit={form.handleSubmit(submitForm)}
+        // onSubmit={form.handleSubmit(submitForm)}
       >
         <div className='flex gap-4 mb-4'>
           <FormField
@@ -75,7 +78,7 @@ const EmailForm = () => {
                   <span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='' {...field} />
+                  <Input placeholder='' {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,7 +94,7 @@ const EmailForm = () => {
                   <span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='' {...field} />
+                  <Input placeholder='' {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -117,6 +120,8 @@ const EmailForm = () => {
                     {...field}
                     value={phoneInput}
                     type='tel'
+                    required
+                    pattern='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$'
                   />
                 </FormControl>
                 <FormMessage />
@@ -134,7 +139,13 @@ const EmailForm = () => {
                   Email<span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='' {...field} />
+                  <Input
+                    placeholder=''
+                    {...field}
+                    type='email'
+                    required
+                    // pattern={emailPattern}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,6 +167,7 @@ const EmailForm = () => {
                   <Textarea
                     placeholder='Ex: One 7in ceramic knife and one 5in smooth edge kitchen knife'
                     {...field}
+                    required
                   />
                 </FormControl>
                 <FormMessage />
@@ -163,25 +175,7 @@ const EmailForm = () => {
             )}
           />
         </div>
-        <button
-          className='border-2 border-black w-full py-2 transition-colors hover:bg-black hover:text-white font-sourceCodePro disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-black flex items-center justify-center'
-          disabled={isLoading}
-          type='submit'
-        >
-          {isLoading ? (
-            <>
-              <TailSpin
-                wrapperClass='!inline-block pr-4'
-                height='24'
-                width='24'
-                color='#000'
-              />{' '}
-              Submitting
-            </>
-          ) : (
-            'Submit'
-          )}
-        </button>
+        <FormButton />
       </form>
     </Form>
   );

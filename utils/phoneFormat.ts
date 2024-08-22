@@ -4,7 +4,7 @@ export const formatPhoneNumber = (
   value: string,
   setPhoneInput: Dispatch<SetStateAction<string | undefined>>,
 ) => {
-  if (!value) return value;
+  if (!value) return setPhoneInput('');
   const phoneNumber = value.replace(/[^\d]/g, '');
   const phoneNumberLength = phoneNumber.length;
   if (phoneNumberLength < 4) return setPhoneInput(phoneNumber);
