@@ -31,6 +31,7 @@ const SharpeningPage = () => {
               <a
                 href='https://www.allertoncreekfarm.com/s/Packing-Tips-for-Mail-in-Service.pdf'
                 className='font-sourceCodePro underline'
+                target='_blank'
               >
                 Click here to view our packing and shipping tips for mail-in
                 sharpening

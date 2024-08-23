@@ -16,9 +16,7 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : '';
+const baseUrl = `https://allerton-creek-farm.vercel.app/images`;
 
 type emailProps = {
   first: string;
@@ -38,13 +36,13 @@ export const EmailTemplate = ({
   return (
     <Html>
       <Head />
-      <Preview>Knife Sharpening Request</Preview>
+      <Preview>New Knife Sharpening Request</Preview>
       <Tailwind
         config={{
           theme: {
             extend: {
               colors: {
-                brand: '#2250f4',
+                brand: '#283550',
                 offwhite: '#fafbfb',
               },
               spacing: {
@@ -58,30 +56,45 @@ export const EmailTemplate = ({
       >
         <Body className='bg-offwhite text-base font-sans'>
           <Img
-            src={`/images/cuttingboard-cta.JPG`}
-            width='184'
-            height='75'
-            alt='Netlify'
+            src={`${baseUrl}/cuttingboard-cta.JPG`}
+            width='175'
+            height='150'
+            alt='Allerton Creek Farm Logo'
             className='mx-auto my-20'
           />
-          <Container className='bg-white p-45'>
+          <Container className='bg-brand py-45 px-20 text-white'>
             <Heading className='text-center my-0 leading-8'>
-              New Form Submission
+              New Knife Sharpening Request
             </Heading>
 
-            <Section>
+            <Section className='mt-4'>
               <Row>
                 <Text className='text-base'>
-                  {`New Knife Sharpening Submission From ${first} ${last}`}
+                  <span className='font-bold'>Name: </span>
+                  {first} {last}
                 </Text>
-
-                <Text className='text-base'>Contact Details:</Text>
-                <Text className='text-base'>{phone}</Text>
-                <Text className='text-base'>{email}</Text>
-                <Text className='text-base'>{desc}</Text>
+                <div className='h-[1px] w-full bg-white'></div>
+                <Text className='text-base text-white'>
+                  <span className='font-bold'>Phone Number: </span>
+                  {phone}
+                </Text>
+                <div className='h-[1px] w-full bg-white'></div>
+                <Text className='text-base'>
+                  <span className='font-bold'>Email: </span>
+                  <Link
+                    href={`mailto:${email}`}
+                    className='text-base text-white'
+                  >
+                    {email}
+                  </Link>
+                </Text>
+                <div className='h-[1px] w-full bg-white'></div>
+                <Text className='text-base'>
+                  <span className='font-bold'>Message: </span>
+                  {desc}
+                </Text>
               </Row>
             </Section>
-            <Section className='mt-45'></Section>
           </Container>
         </Body>
       </Tailwind>

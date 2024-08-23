@@ -22,7 +22,6 @@ import FormButton from './FormButton';
 
 const EmailForm = () => {
   const [phoneInput, setPhoneInput] = useState<string | undefined>('');
-  const emailPattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$';
 
   const [state, formAction] = useFormState(sendEmailAction, {
     message: '',
@@ -47,25 +46,22 @@ const EmailForm = () => {
   useEffect(() => {
     if (state?.message !== '' && !state.issues) {
       toast.success(state.message);
+      setPhoneInput('');
+      form.reset(defaultValues);
     } else if (state.issues) {
       const errorMessages = state.issues.map((issue) => issue);
       toast.error(errorMessages.join('. '));
     }
   }, [state]);
 
-  console.log(phoneInput);
-
-  // const submitForm = (data: FormFields, event?: React.BaseSyntheticEvent) => {
-  //   setIsLoading(true);
-  //   return formRef.current?.submit();
-  // };
-
   return (
     <Form {...form}>
       <form
         ref={formRef}
-        action={formAction}
-        // onSubmit={form.handleSubmit(submitForm)}
+        action={async (formData: FormData) => {
+          await formAction(formData);
+          formRef.current?.reset();
+        }}
       >
         <div className='flex gap-4 mb-4'>
           <FormField
@@ -139,13 +135,7 @@ const EmailForm = () => {
                   Email<span className='text-destructive align-super'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder=''
-                    {...field}
-                    type='email'
-                    required
-                    // pattern={emailPattern}
-                  />
+                  <Input placeholder='' {...field} type='email' required />
                 </FormControl>
                 <FormMessage />
               </FormItem>

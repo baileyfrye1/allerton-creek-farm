@@ -9,12 +9,15 @@ export const emailSchema = z.object({
   last: z.string().trim().min(1, { message: 'Last name is required' }),
   phone: z.string().regex(phoneRegex, 'Invalid phone number'),
   email: z.string().trim().email(),
-  desc: z.string().trim().min(10, { message: 'Please enter a message' }),
+  desc: z
+    .string()
+    .trim()
+    .min(10, { message: 'Message must be at least 10 characters' }),
 });
 
 export type FormFields = z.infer<typeof emailSchema>;
 
-// NOT NEEDED RIGHT NOW, MAY INTEGRATE LATER WHEN SITE HAS PRODUCTS
+//* NOT NEEDED RIGHT NOW, MAY INTEGRATE LATER WHEN SITE HAS PRODUCTS
 // export function validateWithZodSchema<T>(schema: ZodSchema<T>, data: unknown) {
 //   const result = schema.safeParse(data);
 //   if (!result.success) {
