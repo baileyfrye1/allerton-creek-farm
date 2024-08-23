@@ -19,7 +19,7 @@ const Navbar = () => {
       <div>
         <Link
           href={'/'}
-          className='font-abel text-[clamp(1.5rem,3vw,2rem)] tracking-wide'
+          className='font-abel text-[clamp(1.5rem,3vw,2rem)] tracking-wide text-black'
           onClick={() => document.body.classList.remove('overflow-hidden')}
         >
           Allerton Creek Farm
@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link
               key={link.id}
               href={link.href}
-              className={`font-sourceCodePro font-light pb-0.5 ${pathname === link.href && 'border-b border-black'}`}
+              className={`font-sourceCodePro font-light pb-0.5 text-black ${pathname === link.href && 'border-b border-black'}`}
             >
               {link.label}
             </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
           href={'https://www.facebook.com/allertoncreekfarm/'}
           target='_blank'
         >
-          <FaFacebookF />
+          <FaFacebookF className='text-black' />
         </Link>
       </div>
     </nav>

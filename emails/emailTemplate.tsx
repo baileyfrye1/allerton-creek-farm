@@ -16,8 +16,6 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-const baseUrl = `https://allerton-creek-farm.vercel.app/images`;
-
 type emailProps = {
   first: string;
   last: string;
@@ -56,7 +54,7 @@ export const EmailTemplate = ({
       >
         <Body className='bg-offwhite text-base font-sans'>
           <Img
-            src={`${baseUrl}/cuttingboard-cta.JPG`}
+            src={`${process.env.BASE_URL}/images/cuttingboard-cta.JPG`}
             width='175'
             height='150'
             alt='Allerton Creek Farm Logo'
@@ -76,7 +74,12 @@ export const EmailTemplate = ({
                 <div className='h-[1px] w-full bg-white'></div>
                 <Text className='text-base text-white'>
                   <span className='font-bold'>Phone Number: </span>
-                  {phone}
+                  <Link
+                    href={`tel:+1${phone}`}
+                    className='text-base text-white'
+                  >
+                    {phone}
+                  </Link>
                 </Text>
                 <div className='h-[1px] w-full bg-white'></div>
                 <Text className='text-base'>

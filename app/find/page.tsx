@@ -1,6 +1,13 @@
 import Container from '@/components/global/Container';
 import markets from '@/utils/markets';
 import Market from '@/components/Market';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Find Us',
+  description:
+    'Find Allerton Creek Farm at your local farmers markets. Discover where to meet us for fast and friendly knife sharpening services and custom-made products.',
+};
 
 const FindUsPage = () => {
   return (

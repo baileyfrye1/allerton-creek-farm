@@ -57,13 +57,7 @@ const EmailForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        ref={formRef}
-        action={async (formData: FormData) => {
-          await formAction(formData);
-          formRef.current?.reset();
-        }}
-      >
+      <form ref={formRef} action={formAction}>
         <div className='flex gap-4 mb-4'>
           <FormField
             control={form.control}
@@ -159,6 +153,7 @@ const EmailForm = () => {
                     placeholder='Ex: One 7in ceramic knife and one 5in smooth edge kitchen knife'
                     {...field}
                     required
+                    minLength={10}
                   />
                 </FormControl>
                 <FormMessage />

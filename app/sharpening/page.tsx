@@ -1,8 +1,14 @@
-'use client';
 import Container from '@/components/global/Container';
 import knives from '@/utils/knives';
 import KnifeType from '@/components/KnifeType';
 import EmailForm from '@/components/form/EmailForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sharpening Services',
+  description:
+    'Submit your request for fast and friendly knife sharpening services at Allerton Creek Farm. Enjoy quick turnaround times and competitive pricing with no location restrictions.',
+};
 
 const SharpeningPage = () => {
   return (
