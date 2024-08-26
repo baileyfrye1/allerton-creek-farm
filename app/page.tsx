@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <section
-        className={`bg-[url('/images/cuttingboard-hero.JPG')] bg-cover relative bg-center h-screen grid place-items-center md:h-96 after:content-[''] after:w-full after:h-full after:bg-black after:opacity-25 after:absolute`}
+        className={`bg-[url('/images/cuttingboard-hero.webp')] bg-cover relative bg-center h-screen grid place-items-center md:h-96 after:content-[''] after:w-full after:h-full after:bg-black after:opacity-25 after:absolute`}
       >
         <Container className='flex flex-col h-full max-w-5xl justify-center gap-6 relative z-10'>
           {links.map((link) => {
