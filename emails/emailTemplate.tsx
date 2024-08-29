@@ -54,7 +54,7 @@ export const EmailTemplate = ({
       >
         <Body className='bg-offwhite text-base font-sans'>
           <Img
-            src={`${process.env.BASE_URL}/images/email-logo.png`}
+            src='https://www.allertoncreekfarm.com/images/email-logo.png'
             width='200'
             height='100'
             alt='Allerton Creek Farm Logo'
