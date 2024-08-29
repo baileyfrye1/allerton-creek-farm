@@ -32,8 +32,8 @@ export const sendEmailAction = async (
 
   try {
     await resend.emails.send({
-      from: 'Allerton Creek Farm Form Submission <onboarding@resend.dev>',
-      to: ['bailey@fryegroupnashville.com'],
+      from: 'Allerton Creek Farm Form Submission <no-reply@allertoncreekfarm.com>',
+      to: ['allertoncreekfarm@gmail.com'],
       bcc: ['baileyafrye@comcast.net'],
       subject: 'New Knife Sharpening Request',
       react: EmailTemplate({ ...validatedFields.data }),
