@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const abel = Abel({
   weight: '400',
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body className={`${abel.variable} ${sourceCodePro.variable}`}>
         <Navbar />
         <main>{children}</main>
+        <Analytics />
         <ToastContainer position='top-right' />
         <Footer />
       </body>
