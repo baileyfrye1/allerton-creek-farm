@@ -33,8 +33,8 @@ export const sendEmailAction = async (
   try {
     await resend.emails.send({
       from: 'Allerton Creek Farm Form Submission <onboarding@resend.dev>',
-      to: ['baileyafrye@comcast.net'],
-      cc: ['bailey@fryegroupnashville.com'],
+      to: ['bailey@fryegroupnashville.com'],
+      bcc: ['baileyafrye@comcast.net'],
       subject: 'New Knife Sharpening Request',
       react: EmailTemplate({ ...validatedFields.data }),
     });
