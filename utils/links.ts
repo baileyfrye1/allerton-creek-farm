@@ -4,7 +4,7 @@ const links = [
   {
     id: uuid(),
     label: 'Sharpening Services',
-    href: '/sharpening',
+    href: '/sharpening-services',
   },
   {
     id: uuid(),
