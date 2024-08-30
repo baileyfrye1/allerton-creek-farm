@@ -35,7 +35,7 @@ const SharpeningPage = () => {
                 mail your items to us.
               </p>
               <a
-                href='https://www.allertoncreekfarm.com/s/Packing-Tips-for-Mail-in-Service.pdf'
+                href='/pdf/packing-tips.pdf'
                 className='font-sourceCodePro underline'
                 target='_blank'
               >

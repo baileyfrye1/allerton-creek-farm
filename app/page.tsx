@@ -41,7 +41,7 @@ export default function Home() {
               scissors. We also offer light restoration on knives.
             </p>
             <Link
-              href={'/sharpening'}
+              href={'/sharpening-services'}
               className='underline font-sourceCodePro font-semibold'
             >
               Learn More
