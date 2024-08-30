@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${process.env.BASE_URL}/sharpening`,
+      url: `${process.env.BASE_URL}/sharpening-services`,
       priority: 0.75,
     },
     {
