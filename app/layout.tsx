@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Allerton Creek Farm',
   },
   description:
-    'Allerton Creek Farm is a family owned, small craft farm located in Hunterdon County, New Jersey.',
+    'Allerton Creek Farm is a family owned, small craft farm located in Hunterdon County, New Jersey that offers premium knife sharpening and blade sharpening. Specializing in restoring and sharpening knives, scissors, garden tools, and more, we restore and sharpen blades with expert precision for peak performance.',
   twitter: {
     card: 'summary_large_image',
   },
