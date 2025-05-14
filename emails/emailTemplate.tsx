@@ -1,7 +1,6 @@
 import {
   Body,
   Button,
-  Column,
   Container,
   Head,
   Heading,
@@ -13,8 +12,8 @@ import {
   Section,
   Text,
   Tailwind,
-} from '@react-email/components';
-import * as React from 'react';
+} from "@react-email/components";
+import * as React from "react";
 
 type emailProps = {
   first: string;
@@ -40,63 +39,71 @@ export const EmailTemplate = ({
           theme: {
             extend: {
               colors: {
-                brand: '#283550',
-                offwhite: '#fafbfb',
+                brand: "#283550",
+                offwhite: "#fafbfb",
               },
               spacing: {
-                0: '0px',
-                20: '20px',
-                45: '45px',
+                0: "0px",
+                20: "20px",
+                45: "45px",
               },
             },
           },
         }}
       >
-        <Body className='bg-offwhite text-base font-sans'>
+        <Body className="bg-offwhite text-base font-sans">
           <Img
-            src='https://www.allertoncreekfarm.com/images/email-logo.png'
-            width='200'
-            height='100'
-            alt='Allerton Creek Farm Logo'
-            className='mx-auto my-20'
+            src="https://www.allertoncreekfarm.com/images/email-logo.png"
+            width="200"
+            height="100"
+            alt="Allerton Creek Farm Logo"
+            className="mx-auto my-20"
           />
-          <Container className='bg-brand py-45 px-20 text-white'>
-            <Heading className='text-center my-0 leading-8'>
+          <Container className="bg-brand py-45 px-20 text-white">
+            <Heading className="text-center my-0 leading-8">
               New Knife Sharpening Request
             </Heading>
 
-            <Section className='mt-4'>
+            <Section className="mt-4">
               <Row>
-                <Text className='text-base'>
-                  <span className='font-bold'>Name: </span>
+                <Text className="text-base">
+                  <span className="font-bold">Name: </span>
                   {first} {last}
                 </Text>
-                <div className='h-[1px] w-full bg-white'></div>
-                <Text className='text-base text-white'>
-                  <span className='font-bold'>Phone Number: </span>
+                <div className="h-[1px] w-full bg-white"></div>
+                <Text className="text-base text-white">
+                  <span className="font-bold">Phone Number: </span>
                   <Link
                     href={`tel:+1${phone}`}
-                    className='text-base text-white'
+                    className="text-base text-white"
                   >
                     {phone}
                   </Link>
                 </Text>
-                <div className='h-[1px] w-full bg-white'></div>
-                <Text className='text-base'>
-                  <span className='font-bold'>Email: </span>
+                <div className="h-[1px] w-full bg-white"></div>
+                <Text className="text-base">
+                  <span className="font-bold">Email: </span>
                   <Link
                     href={`mailto:${email}`}
-                    className='text-base text-white'
+                    className="text-base text-white"
                   >
                     {email}
                   </Link>
                 </Text>
-                <div className='h-[1px] w-full bg-white'></div>
-                <Text className='text-base'>
-                  <span className='font-bold'>Message: </span>
+                <div className="h-[1px] w-full bg-white"></div>
+                <Text className="text-base">
+                  <span className="font-bold">Message: </span>
                   {desc}
                 </Text>
               </Row>
+            </Section>
+            <Section>
+              <Button
+                href={`mailto:${email}`}
+                className="box-border rounded-lg bg-white text-brand w-full font-bold text-center py-2 mt-2"
+              >
+                Reply
+              </Button>
             </Section>
           </Container>
         </Body>

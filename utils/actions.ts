@@ -1,7 +1,7 @@
-'use server';
-import EmailTemplate from '@/emails/emailTemplate';
-import { Resend } from 'resend';
-import { emailSchema } from './schemas';
+"use server";
+import EmailTemplate from "@/emails/emailTemplate";
+import { Resend } from "resend";
+import { emailSchema } from "./schemas";
 
 const resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
@@ -24,7 +24,7 @@ export const sendEmailAction = async (
       fields[key] = rawData[key].toString();
     }
     return {
-      message: 'Invalid form data',
+      message: "Invalid form data",
       fields,
       issues: validatedFields.error.issues.map((issue) => issue.message),
     };
@@ -32,10 +32,10 @@ export const sendEmailAction = async (
 
   try {
     await resend.emails.send({
-      from: 'Allerton Creek Farm Form Submission <no-reply@allertoncreekfarm.com>',
-      to: ['allertoncreekfarm@gmail.com'],
-      bcc: ['baileyafrye@comcast.net'],
-      subject: 'New Knife Sharpening Request',
+      from: "Allerton Creek Farm Form Submission <no-reply@allertoncreekfarm.com>",
+      to: ["allertoncreekfarm@gmail.com"],
+      bcc: ["baileyafrye@comcast.net"],
+      subject: "New Knife Sharpening Request",
       react: EmailTemplate({ ...validatedFields.data }),
     });
   } catch (error) {
@@ -47,6 +47,6 @@ export const sendEmailAction = async (
     }
   }
   return {
-    message: 'Thank you for submitting! We will contact you shortly.',
+    message: "Thank you for submitting! We will contact you shortly.",
   };
 };
